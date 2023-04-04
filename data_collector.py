@@ -13,11 +13,7 @@ while True:
     _, img = cam.read()
     hands = detector.findHands(img, draw=False)
     if hands:
-        data_img = fs.crop_hand(img, hands, 0)
-        cv2.imshow("Hand", data_img)
-        k = cv2.waitKey(1)
-        if k==ord("s"):
-            cv2.imwrite(fr"DATA/ASL/A/IMG{time.time()}.jpg", data_img)
+        fs.crop_hand(img, hands, 0, "Hand")
     ctime = time.time()
     fps = 1/(ctime-stime)
     stime = ctime

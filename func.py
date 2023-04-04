@@ -1,9 +1,10 @@
 from math import ceil
 import numpy as np
 import cv2
+import time
 
 
-def crop_hand(img, hands, member):
+def crop_hand(img, hands, member, winname):
     imgsize = 300
     hand_member = hands[member]
     x_, y_, w_, h_ = hand_member["bbox"]
@@ -17,14 +18,15 @@ def crop_hand(img, hands, member):
             wc = ceil(k*w_)
             wgap = ceil((imgsize-wc)/2)
             imgresize = cv2.resize(imgcrop, (wc, imgsize))
-            imgresizeshape = imgresize.shape
-            imgwhite[:, wgap:imgresizeshape[1]+wgap] = imgresize
+            imgwhite[:, wgap:wc+wgap] = imgresize
             
         else:
             k = imgsize/w_
             hc = ceil(k*h_)
             hgap = ceil((imgsize-hc)/2)
             imgresize = cv2.resize(imgcrop, (imgsize, hc))
-            imgresizeshape = imgresize.shape
-            imgwhite[hgap:imgresizeshape[0]+hgap, :] = imgresize
-        return imgwhite
+            imgwhite[hgap:hc+hgap, :] = imgresize
+        cv2.imshow(winname, imgwhite)
+        key = cv2.waitKey(1)
+        if key==ord("s"):
+            cv2.imwrite(fr"DATA/ASL/A/IMG{time.time()}.jpg", imgwhite)

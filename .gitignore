@@ -1,3 +1,6 @@
-_pycache_
+_pycache_\*
 DOUBT.*
 use.ipynb
+Sign-Language-To-Text-Conversion\*
+*.ppt
+try.*

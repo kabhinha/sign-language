@@ -1,5 +1,6 @@
 from math import ceil
 import numpy as np
+import classifier as cf
 import cv2
 import time
 
@@ -29,4 +30,14 @@ def crop_hand(img, hands, member, winname):
         cv2.imshow(winname, imgwhite)
         key = cv2.waitKey(1)
         if key==ord("s"):
-            cv2.imwrite(fr"DATA/ASL/A/IMG{time.time()}.jpg", imgwhite)
+            cv2.imwrite(fr"DATA/ASL/F/IMG{time.time()}.jpg", imgwhite)
+        return imgwhite
+
+def img_text(img):
+    modelPath= r"Model\keras_Model.h5"
+    labelsPath = r"Model\labels.txt"
+    model, labels = cf.load_modell(modelPath, labelsPath)
+    results = cf.getPrediction(img, model, labels)
+ #   if results:
+#        time.sleep(0.001)
+    print(results)

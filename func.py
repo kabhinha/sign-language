@@ -30,12 +30,13 @@ def crop_hand(img, hands, member, winname):
         cv2.imshow(winname, imgwhite)
         key = cv2.waitKey(1)
         if key==ord("s"):
-            cv2.imwrite(fr"DATA/ASL/F/IMG{time.time()}.jpg", imgwhite)
+            cv2.imwrite(fr"DATA/rps/Rock/IMG{time.time()}.jpg", imgwhite)
         return imgwhite
 
 def img_text(img):
     modelPath= r"Model\keras_Model.h5"
-    labelsPath = r"Model\labels.txt"
+    modelPath= r"E:\Users\HP\Desktop\aalix clg\projects\AR game\Model\keras_model.h5"
+    labelsPath = r"E:\Users\HP\Desktop\aalix clg\projects\AR game\Model\labels.txt"
     model, labels = cf.load_modell(modelPath, labelsPath)
     results = cf.getPrediction(img, model, labels)
  #   if results:

@@ -1,5 +1,5 @@
 from hand_tracker import HandDetector
-from cvzone.ClassificationModule import Classifier
+from cvTool.ClassificationModule import Classifier
 import func as fs
 import cv2
 import time
